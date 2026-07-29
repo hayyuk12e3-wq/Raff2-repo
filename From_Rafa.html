@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Honey 🩷</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ffd6e8,#fff5fa,#ffe6f2);
+    overflow:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:750px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:fade 1.5s ease;
+    z-index:10;
+}
+
+h1{
+    text-align:center;
+    color:#ff4f87;
+    margin-bottom:25px;
+}
+
+#typing{
+    white-space:pre-wrap;
+    line-height:1.9;
+    font-size:18px;
+    color:#444;
+}
+
+button{
+    margin-top:30px;
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    background:#ff4f87;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+button:hover{
+    background:#ff2b71;
+    transform:scale(1.05);
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Animasi Hati */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    color:#ff4f87;
+    font-size:20px;
+    animation:float 8s linear infinite;
+    opacity:.8;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dear, My Honey 🩷<br>Marcela Dian</h1>
+
+<p id="typing"></p>
+
+<button id="playMusic">🎵 Putar Musik</button>
+
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="Love You.M4A" type="audio/mpeg">
+</audio>
+
+<script>
+
+const text = `Aku tidak pernah berharap bisa menghapus indahnya masa lalumu, dan aku juga tidak ingin dibandingkan dengan siapa pun yang pernah hadir dalam hidupmu. Aku sadar, mungkin aku masih jauh dari kata sempurna. Mungkin aku belum bisa menjadi pasangan terbaik atau seseorang yang selalu bisa kamu andalkan dalam setiap keadaan.
+
+Tapi percayalah, setiap hari aku selalu berusaha menjadi versi terbaik dari diriku untukmu. Aku belajar memahami, menghargai, dan mencintaimu dengan caraku sendiri. Semua yang kulakukan mungkin tidak selalu terlihat sempurna, tetapi semuanya lahir dari ketulusan dan keinginanku untuk membuatmu bahagia.
+
+Jika suatu hari nanti aku berhasil menjadi pasangan yang kamu impikan, itu bukan karena aku sudah sempurna, melainkan karena cintaku kepadamu tidak pernah berhenti membuatku ingin terus bertumbuh. Selama kamu masih memilih untuk tetap di sisiku, aku akan terus berusaha menjadi rumah yang mampu memberimu rasa nyaman, tenang, dan bahagia. 🩷`;
+
+let i = 0;
+const typing = document.getElementById("typing");
+
+function type(){
+    if(i < text.length){
+        typing.textContent += text.charAt(i);
+        i++;
+        setTimeout(type,35 + Math.random()*35);
+    }
+}
+
+type();
+
+const music = document.getElementById("bgMusic");
+music.volume = 0.3;
+
+const btn = document.getElementById("playMusic");
+
+btn.onclick = () => {
+    music.play();
+    btn.innerHTML = "💖 Musik Diputar";
+};
+
+music.play().then(()=>{
+    btn.style.display="none";
+}).catch(()=>{});
+
+/* Membuat hati beterbangan */
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML="🩷";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+
+}
+
+setInterval(createHeart,400);
+
+</script>
+
+</body>
+</html>
